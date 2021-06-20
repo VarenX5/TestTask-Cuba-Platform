@@ -3,6 +3,6 @@
     <menu id="application-testtask2" insertBefore="administration" caption="mainMsg://menu_config.application-testtask2">
         <item screen="testtask2_DVDOwner.browse" caption="mainMsg://menu_config.testtask2_DVDOwner.browse"/>
         <item screen="testtask2_DVD.browse" caption="mainMsg://menu_config.testtask2_DVD.browse"/>
-        <item screen="testtask2_OwnedDVDsBrowse" caption="mainMsg://menu_config.testtask2_OwnedDVDsBrowse"/>
+        <item screen="testtask2_DVDOwned.browse" caption="mainMsg://menu_config.testtask2_DVDOwned.browse"/>
     </menu>
 </menu-config>
