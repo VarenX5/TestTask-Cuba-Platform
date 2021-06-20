@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-testtask2" insertBefore="administration" caption="mainMsg://menu_config.application-testtask2">
+        <item screen="testtask2_DVDOwner.browse" caption="mainMsg://menu_config.testtask2_DVDOwner.browse"/>
+        <item screen="testtask2_DVD.browse" caption="mainMsg://menu_config.testtask2_DVD.browse"/>
+        <item screen="testtask2_OwnedDVDsBrowse" caption="mainMsg://menu_config.testtask2_OwnedDVDsBrowse"/>
+    </menu>
+</menu-config>

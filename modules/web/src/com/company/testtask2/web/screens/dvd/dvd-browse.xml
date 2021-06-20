@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://DVDBrowse.caption"
+        focusComponent="dVDsTable"
+        messagesPack="com.company.testtask2.web.screens.dvd">
+    <data readOnly="true">
+        <collection id="dVDsDc"
+                    class="com.company.testtask2.entity.DVD"
+                    view = "dvd-view">
+<!--            <view extends="_local">-->
+<!--                <property name="owner" view="_minimal"/>-->
+<!--            </view>-->
+
+            <loader id="dVDsDl">
+                <query>
+                    <![CDATA[select e from testtask2_DVD e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="dVDsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="dVDsTable"
+                dataLoader="dVDsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="dVDsTable"
+                    width="100%"
+                    dataContainer="dVDsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="owner"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="dVDsTable.create"/>
+                <button id="editBtn" action="dVDsTable.edit"/>
+                <button id="removeBtn" action="dVDsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
