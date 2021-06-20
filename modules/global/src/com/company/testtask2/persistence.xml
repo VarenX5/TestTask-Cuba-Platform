@@ -4,5 +4,6 @@
 
         <class>com.company.testtask2.entity.DVDOwner</class>
         <class>com.company.testtask2.entity.DVD</class>
+        <class>com.company.testtask2.entity.ItemTaken</class>
     </persistence-unit>
 </persistence>

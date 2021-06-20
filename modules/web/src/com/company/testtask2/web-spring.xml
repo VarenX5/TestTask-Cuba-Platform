@@ -7,5 +7,5 @@
     <context:component-scan base-package="com.company.testtask2"/>
     
     <gui:screens base-packages="com.company.testtask2.web"/>
-
+    <gui:actions base-packages="com.company.testtask2.web.actions"/>
 </beans>

@@ -20,6 +20,17 @@ public class DVD extends StandardEntity {
     @JoinColumn(name = "OWNER_ID")
     private DVDOwner owner;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "takenDvd")
+    private ItemTaken itemTaken;
+
+    public ItemTaken getItemTaken() {
+        return itemTaken;
+    }
+
+    public void setItemTaken(ItemTaken itemTaken) {
+        this.itemTaken = itemTaken;
+    }
+
     public DVDOwner getOwner() {
         return owner;
     }

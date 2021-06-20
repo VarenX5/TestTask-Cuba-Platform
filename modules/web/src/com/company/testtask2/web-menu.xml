@@ -4,5 +4,6 @@
         <item screen="testtask2_DVDOwner.browse" caption="mainMsg://menu_config.testtask2_DVDOwner.browse"/>
         <item screen="testtask2_DVD.browse" caption="mainMsg://menu_config.testtask2_DVD.browse"/>
         <item screen="testtask2_DVDOwned.browse" caption="mainMsg://menu_config.testtask2_DVDOwned.browse"/>
+        <item screen="testtask2_ItemTaken.browse" caption="mainMsg://menu_config.testtask2_ItemTaken.browse"/>
     </menu>
 </menu-config>
