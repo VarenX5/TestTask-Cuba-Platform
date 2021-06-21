@@ -168,3 +168,17 @@ task restart(dependsOn: ['stop', ":${modulePrefix}-core:deploy", ":${modulePrefi
 }
 restart.finalizedBy start
 
+task buildUberJar(type: CubaUberJarBuilding) {
+    logbackConfigurationFile = 'etc/uber-jar-logback.xml'
+    singleJar = true
+    appProperties = ['cuba.automaticDatabaseUpdate'    : true,
+                     'cuba.dataSource.username'        : 'cubastudent',
+                     'cuba.dataSource.password'        : 'cubastudent',
+                     'cuba.dataSource.dbName'          : 'dvddbdeploy',
+                     'cuba.dataSource.host'            : 'localhost',
+                     'cuba.dataSource.port'            : '3306',
+                     'cuba.dataSource.connectionParams': '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC',
+                     'cuba.dataSourceProvider'         : 'application',
+                     'cuba.webHostName'                : 'dvdmyserver',
+                     'cuba.webAppUrl'                  : 'http://dvdmyserver:8080/testtask']
+}
