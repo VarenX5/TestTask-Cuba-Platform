@@ -8,7 +8,6 @@ import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.testtask2.entity.DVD;
 import com.haulmont.cuba.gui.screen.LookupComponent;
-import com.haulmont.cuba.security.entity.User;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;
