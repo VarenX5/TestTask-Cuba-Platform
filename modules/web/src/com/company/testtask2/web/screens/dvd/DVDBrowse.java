@@ -1,18 +1,17 @@
 package com.company.testtask2.web.screens.dvd;
 
 import com.company.testtask2.entity.DVDOwner;
+import com.company.testtask2.web.beans.TakenItemsList;
+import com.company.testtask2.web.beans.WebCurrentLoggedOwner;
 import com.haulmont.cuba.core.global.*;
-import com.haulmont.cuba.gui.components.Action;
-import com.haulmont.cuba.gui.components.actions.BaseAction;
-import com.haulmont.cuba.gui.model.CollectionContainer;
-import com.haulmont.cuba.gui.model.CollectionLoader;
-import com.haulmont.cuba.gui.model.DataContext;
+import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.testtask2.entity.DVD;
+import com.haulmont.cuba.gui.screen.LookupComponent;
 import com.haulmont.cuba.security.entity.User;
+import org.slf4j.Logger;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
 @UiController("testtask2_DVD.browse")
@@ -20,31 +19,46 @@ import java.util.List;
 @LookupComponent("dVDsTable")
 @LoadDataBeforeShow
 public class DVDBrowse extends StandardLookup<DVD> {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(DVDBrowse.class);
     @Inject
     private DataManager dataManager;
-    @Named("dVDsTable.take")
-    private BaseAction dVDsTableTake;
+    @Inject
+    private TakenItemsList takenItemsList;
+    @Inject
+    private WebCurrentLoggedOwner webCurrentLoggedOwner;
+    private DVDOwner currentDVDOwner;
 
     @Install(to = "dVDsDl", target = Target.DATA_LOADER)
     private List<DVD> dVDsDlLoadDelegate(LoadContext<DVD> loadContext) {
-        User secUser = AppBeans.get(UserSessionSource.class).getUserSession().getUser();
-        List<DVDOwner> list = dataManager.load(DVDOwner.class).query("select u from testtask2_DVDOwner u where u.systemUser = ?1", secUser).list();
-
+        try {
+            currentDVDOwner = webCurrentLoggedOwner.getCurrentDVDOwner();
+        } catch (Exception e){
+            log.error("Error", e);
+        }
         LoadContext<DVD> loadDVDContext = LoadContext.create(DVD.class).
                 setQuery(LoadContext.
                         createQuery("select u from testtask2_DVD u where u.owner <> :ownerId").
-                        setParameter("ownerId", list.get(0))).setView("dvd-view");
+                        setParameter("ownerId", currentDVDOwner)).setView("dvd-view");
+        List<DVD> listOfDVDs = dataManager.loadList(loadDVDContext);
+        List<DVD> listOfTakenDVD = takenItemsList.getListOfTakenDVD();
+        listOfDVDs.removeIf(listOfTakenDVD::contains); //removing all dvds whose were taken by others users
 
-//        List<DVD> listOfDVDs = dataManager.loadList(loadDVDContext);
-//        listOfDVDs.removeIf(dvd -> dvd.getItemTaken() != null); //removing all dvds whose were taken bu others users
-//        return listOfDVDs;
-        return dataManager.loadList(loadDVDContext);
+        return listOfDVDs;
+
     }
 
     @Subscribe("dVDsTable.take")
     public void onDVDsTableTake(Action.ActionPerformedEvent event) {
-
-
+        refreshScreen();
     }
 
+
+    @Subscribe("refreshBtn")
+    public void onRefreshBtnClick(Button.ClickEvent event) {
+        refreshScreen();
+    }
+
+    public void refreshScreen(){
+        getScreenData().loadAll();
+    }
 }

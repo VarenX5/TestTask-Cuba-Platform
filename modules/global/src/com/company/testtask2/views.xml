@@ -5,4 +5,15 @@
     <view entity="testtask2_DVD" name="dvd-view" extends="_local">
         <property name="owner" view="_minimal"/>
     </view>
+    <view entity="testtask2_ItemTaken" name="itemTakenFromUser-view" extends="_local">
+        <property name="currentOwner" view="_minimal">
+            <property name="lastName"/>
+        </property>
+        <property name="takenDvd" view="_minimal"/>
+    </view>
+    <view entity="testtask2_ItemTaken" name="itemTakenByUser-view" extends="_local">
+        <property name="takenDvd" view="_minimal">
+            <property name="owner" view="_minimal"/>
+        </property>
+    </view>
 </views>

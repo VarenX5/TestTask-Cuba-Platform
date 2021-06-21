@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Table(name = "TESTTASK2_DVD_OWNER")
 @Entity(name = "testtask2_DVDOwner")
-@NamePattern("%s|firstName")
+@NamePattern("%s %s|firstName,lastName")
 public class DVDOwner extends StandardEntity {
     private static final long serialVersionUID = -3952872649773738145L;
 

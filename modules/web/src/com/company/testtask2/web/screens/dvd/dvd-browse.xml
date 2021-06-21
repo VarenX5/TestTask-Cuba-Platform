@@ -35,7 +35,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
-                <action id="take" type="takeDvd" caption="Take" trackSelection="true"/>
+                <action id="take" type="takeDvd" caption="Take" trackSelection="true" />
 
             </actions>
             <columns>
@@ -46,7 +46,8 @@
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createBtn" action="dVDsTable.create"/>
-                <button id="takeBtn" action="dVDsTable.take"/>
+                <button id="refreshBtn" visible="false"/>
+                <button id="takeBtn" action="dVDsTable.take" invoke="refreshScreen"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

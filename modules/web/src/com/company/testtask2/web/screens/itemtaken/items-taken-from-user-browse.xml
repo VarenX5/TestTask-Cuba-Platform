@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
-        caption="msg://itemTakenByUserBrowse.caption"
+        caption="msg://itemsTakenFromUserBrowse.caption"
         focusComponent="itemTakensTable"
         messagesPack="com.company.testtask2.web.screens.itemtaken">
     <data readOnly="true">
         <collection id="itemTakensDc"
                     class="com.company.testtask2.entity.ItemTaken">
             <view extends="_local">
-                <property name="takenDvd" view="_minimal">
-                    <property name="owner" view="_minimal"/>
-                </property>
+                <property name="currentOwner" view="_minimal"/>
+                <property name="takenDvd" view="_minimal"/>
             </view>
             <loader id="itemTakensDl">
                 <query>
@@ -32,17 +31,16 @@
                     width="100%"
                     dataContainer="itemTakensDc">
             <actions>
-                <action id="create" type="create"/>
-                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
             </actions>
             <columns>
                 <column id="takenDvd"/>
-                <column id="takenDvd.owner"/>
+                <column id="currentOwner" caption="borrowed by"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="removeBtn" action="itemTakensTable.remove" caption="Give back"/>
+                <button id="refreshBtn" action="itemTakensTable.refresh" visible="false"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
