@@ -17,7 +17,7 @@ public class UsersFullAccessNoAdminRole extends AnnotatedRoleDefinition {
     public EntityPermissionsContainer entityPermissions() {
         return super.entityPermissions();
     }
-    @EntityAttributeAccess(entityName = "*", view = "*")
+    @EntityAttributeAccess(entityName = "*", modify = "*")
     @Override
     public EntityAttributePermissionsContainer entityAttributePermissions() {
         return super.entityAttributePermissions();

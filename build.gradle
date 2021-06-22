@@ -178,7 +178,5 @@ task buildUberJar(type: CubaUberJarBuilding) {
                      'cuba.dataSource.host'            : 'localhost',
                      'cuba.dataSource.port'            : '3306',
                      'cuba.dataSource.connectionParams': '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC',
-                     'cuba.dataSourceProvider'         : 'application',
-                     'cuba.webHostName'                : 'dvdmyserver',
-                     'cuba.webAppUrl'                  : 'http://dvdmyserver:8080/testtask']
+                     'cuba.dataSourceProvider'         : 'application']
 }
