@@ -38,7 +38,7 @@ dependencies {
     appComponent("com.haulmont.cuba:cuba-global:$cubaVersion")
 }
 
-def mysql = 'mysql:mysql-connector-java:8.0.15'
+def postgres = 'org.postgresql:postgresql:42.2.9'
 
 configure([globalModule, coreModule, webModule]) {
     apply(plugin: 'java')
@@ -90,8 +90,8 @@ configure(coreModule) {
     dependencies {
         compile(globalModule)
         compileOnly(servletApi)
-        jdbc(mysql)
-        testRuntime(mysql)
+        jdbc(postgres)
+        testRuntime(postgres)
     }
 
     task cleanConf(description: 'Cleans up conf directory', type: Delete) {
@@ -171,12 +171,11 @@ restart.finalizedBy start
 task buildUberJar(type: CubaUberJarBuilding) {
     logbackConfigurationFile = 'etc/uber-jar-logback.xml'
     singleJar = true
-    appProperties = ['cuba.automaticDatabaseUpdate'    : true,
-                     'cuba.dataSource.username'        : 'cubastudent',
-                     'cuba.dataSource.password'        : 'cubastudent',
-                     'cuba.dataSource.dbName'          : 'dvddbdeploy',
-                     'cuba.dataSource.host'            : 'localhost',
-                     'cuba.dataSource.port'            : '3306',
-                     'cuba.dataSource.connectionParams': '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC',
-                     'cuba.dataSourceProvider'         : 'application']
+    appProperties = ['cuba.automaticDatabaseUpdate': true,
+                     'cuba.dataSource.username'    : 'cubastudent',
+                     'cuba.dataSource.password'    : 'cubastudent',
+                     'cuba.dataSource.dbName'      : 'dvddeploy',
+                     'cuba.dataSource.host'        : 'localhost',
+                     'cuba.dataSource.port'        : '5432',
+                     'cuba.dataSourceProvider'     : 'application']
 }

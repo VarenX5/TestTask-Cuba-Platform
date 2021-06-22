@@ -1,0 +1,2 @@
+alter table TESTTASK2_DVD add constraint FK_TESTTASK2_DVD_ON_OWNER foreign key (OWNER_ID) references TESTTASK2_DVD_OWNER(ID);
+create index IDX_TESTTASK2_DVD_ON_OWNER on TESTTASK2_DVD (OWNER_ID);
