@@ -23,7 +23,9 @@ public class UsersFullAccessNoAdminRole extends AnnotatedRoleDefinition {
         return super.entityAttributePermissions();
     }
 
-    @ScreenAccess(screenIds = {"help","settings","aboutWindow","application-testtask2","testtask2_DVD.edit","testtask2_DVD.browse","testtask2_DVDOwned.browse","testtask2_ItemsTakenFromUser.browse","testtask2_ItemTaken.browse"})
+    @ScreenAccess(screenIds = {"help","settings","aboutWindow","application-testtask2","testtask2_DVD.edit",
+            "testtask2_DVD.browse","testtask2_DVDOwned.browse","testtask2_ItemsTakenFromUser.browse",
+            "testtask2_ItemTaken.browse","sec$User.changePassword","sec$User.edit"})
     @Override
     public ScreenPermissionsContainer screenPermissions() {
         return super.screenPermissions();
